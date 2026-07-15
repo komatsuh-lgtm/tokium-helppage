@@ -1,0 +1,543 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>TOKIUMスタッフィング スタッフサポート</title>
+<style>
+  :root {
+    --green: #008D97;
+    --green-dark: #0C6E75;
+    --green-deep: #0A5257;
+    --light-green: #00CC99;
+    --orange: #F98938;
+    --orange-dark: #EA7825;
+    --pale-blue: #EDF7F8;
+    --ink: #222229;
+    --ink-soft: #4a4a52;
+    --muted: #6f7377;
+    --line: #e2e8e8;
+    --bg: #ffffff;
+    --surface: #ffffff;
+    --surface-2: #f6f8f8;
+    --shadow: 0 1px 2px rgba(10,82,87,.05), 0 8px 24px rgba(10,82,87,.06);
+    --fill-bg: #fef3e9;
+    --fill-line: #f2b98a;
+    --fill-ink: #b45f19;
+    --radius: 14px;
+    --font: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", "Meiryo", system-ui, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --green: #45B3BA;
+      --green-dark: #70CDC7;
+      --green-deep: #99CED2;
+      --orange: #F98938;
+      --orange-dark: #fca25f;
+      --pale-blue: #10262a;
+      --ink: #e8eded;
+      --ink-soft: #c2cac9;
+      --muted: #8b9694;
+      --line: #26383a;
+      --bg: #0d1416;
+      --surface: #131e20;
+      --surface-2: #162325;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+      --fill-bg: #2b1e10;
+      --fill-line: #6b4a25;
+      --fill-ink: #f0a868;
+    }
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: var(--font);
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.75;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 20px; }
+
+  /* ---- Header ---- */
+  header.site {
+    background:
+      radial-gradient(1200px 300px at 80% -40%, rgba(0,204,153,.12), transparent 60%),
+      linear-gradient(180deg, var(--pale-blue), var(--bg));
+    border-bottom: 1px solid var(--line);
+  }
+  .site-inner { padding: 40px 20px 34px; max-width: 880px; margin: 0 auto; }
+  .brand { display: flex; align-items: center; gap: 10px; margin-bottom: 22px; }
+  .brand .dot { width: 12px; height: 12px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 4px color-mix(in srgb, var(--green) 18%, transparent); }
+  .brand .name { font-weight: 700; letter-spacing: .04em; font-size: .84rem; color: var(--green-dark); text-transform: uppercase; }
+  header.site h1 {
+    margin: 0 0 10px;
+    font-size: clamp(1.7rem, 4.5vw, 2.5rem);
+    line-height: 1.3;
+    letter-spacing: .01em;
+    text-wrap: balance;
+  }
+  header.site p.lead { margin: 0; color: var(--ink-soft); max-width: 60ch; font-size: 1.02rem; }
+
+  /* ---- Sticky nav ---- */
+  nav.toc {
+    position: sticky; top: 0; z-index: 20;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: saturate(1.4) blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav.toc ul { display: flex; gap: 6px; list-style: none; margin: 0 auto; padding: 10px 20px; max-width: 880px; overflow-x: auto; }
+  nav.toc a {
+    display: inline-block; white-space: nowrap; text-decoration: none;
+    color: var(--ink-soft); font-size: .9rem; font-weight: 500;
+    padding: 7px 14px; border-radius: 999px; border: 1px solid transparent;
+    transition: background .15s, color .15s, border-color .15s;
+  }
+  nav.toc a:hover { background: var(--surface-2); color: var(--green-dark); border-color: var(--line); }
+
+  main { padding: 40px 0 24px; }
+
+  /* ---- Quick cards ---- */
+  .quick { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-bottom: 48px; }
+  @media (max-width: 560px) { .quick { grid-template-columns: 1fr; } }
+  .qcard {
+    display: flex; flex-direction: column; gap: 6px;
+    text-decoration: none; color: inherit;
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 20px 20px 18px; box-shadow: var(--shadow);
+    transition: transform .16s ease, border-color .16s;
+  }
+  .qcard:hover { transform: translateY(-3px); border-color: color-mix(in srgb, var(--green) 45%, var(--line)); }
+  .qcard .ic { color: var(--green); margin-bottom: 4px; }
+  .qcard .t { font-weight: 700; font-size: 1.06rem; }
+  .qcard .d { color: var(--muted); font-size: .9rem; line-height: 1.6; }
+
+  /* ---- Sections ---- */
+  section.block { margin-bottom: 52px; scroll-margin-top: 68px; }
+  .sec-head { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; padding-bottom: 14px; border-bottom: 2px solid var(--pale-blue); }
+  .sec-head .num {
+    flex: none; width: 34px; height: 34px; border-radius: 10px;
+    display: grid; place-items: center; color: #fff; background: var(--green);
+    font-weight: 700; font-size: .95rem;
+  }
+  .sec-head h2 { margin: 0; font-size: 1.4rem; letter-spacing: .01em; }
+
+  .card {
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 22px 24px; box-shadow: var(--shadow); margin-bottom: 16px;
+  }
+  .card h3 { margin: 0 0 10px; font-size: 1.08rem; color: var(--green-dark); display: flex; align-items: center; gap: 8px; }
+  .card h3::before { content: ""; width: 6px; height: 18px; border-radius: 3px; background: var(--green); flex: none; }
+  .card p { margin: 0 0 10px; color: var(--ink-soft); }
+  .card p:last-child, .card ul:last-child { margin-bottom: 0; }
+  .card ul { margin: 0 0 10px; padding-left: 0; list-style: none; }
+  .card ul li { position: relative; padding-left: 22px; margin-bottom: 8px; color: var(--ink-soft); }
+  .card ul li::before { content: ""; position: absolute; left: 4px; top: 11px; width: 7px; height: 7px; border-radius: 50%; background: var(--light-green); }
+  .card ul li strong { color: var(--ink); font-weight: 700; }
+
+  /* steps */
+  .steps { counter-reset: step; list-style: none; padding: 0; margin: 0; }
+  .steps li { position: relative; padding: 2px 0 14px 46px; }
+  .steps li::before {
+    counter-increment: step; content: counter(step);
+    position: absolute; left: 0; top: 0; width: 30px; height: 30px;
+    border-radius: 50%; background: var(--pale-blue); color: var(--green-dark);
+    display: grid; place-items: center; font-weight: 700; font-size: .9rem;
+    border: 1px solid color-mix(in srgb, var(--green) 30%, var(--line));
+  }
+  .steps li:not(:last-child)::after { content: ""; position: absolute; left: 14px; top: 32px; bottom: 2px; width: 2px; background: var(--line); }
+  .steps li strong { display: block; color: var(--ink); }
+  .steps li span { color: var(--muted); font-size: .92rem; }
+
+  /* fill-in placeholder */
+  .fill {
+    background: var(--fill-bg); color: var(--fill-ink);
+    border: 1px dashed var(--fill-line); border-radius: 7px;
+    padding: 1px 9px; font-weight: 600; font-size: .92em; white-space: nowrap;
+  }
+  .note {
+    background: var(--surface-2); border-left: 3px solid var(--orange);
+    border-radius: 8px; padding: 12px 16px; font-size: .92rem; color: var(--ink-soft); margin: 12px 0 0;
+  }
+  .note strong { color: var(--ink); }
+
+  /* system list */
+  .sys { display: grid; gap: 14px; }
+  .sys-item { border: 1px solid var(--line); border-radius: 12px; padding: 15px 18px; background: var(--surface-2); }
+  .sys-item .sys-name { font-weight: 700; font-size: 1.04rem; color: var(--ink); display: flex; align-items: center; gap: 8px; }
+  .sys-star { color: var(--orange); font-weight: 800; }
+  .sys-item .sys-role { color: var(--muted); font-size: .85rem; margin: 3px 0 12px; }
+  .card ul.contacts { list-style: none; padding: 0; margin: 0; display: grid; gap: 7px; font-size: .92rem; }
+  .card ul.contacts li { padding-left: 0; margin: 0; color: var(--ink-soft); }
+  .card ul.contacts li::before { display: none; }
+  .contacts .k { color: var(--muted); display: inline-block; min-width: 8.5em; font-size: .85rem; }
+  .contacts a { color: var(--green-dark); word-break: break-all; }
+  @media (max-width: 460px) {
+    .contacts li { display: flex; flex-direction: column; gap: 1px; }
+    .contacts .k { min-width: 0; }
+  }
+
+  /* table */
+  .tbl-wrap { overflow-x: auto; border-radius: 10px; border: 1px solid var(--line); }
+  table { border-collapse: collapse; width: 100%; font-size: .94rem; min-width: 420px; }
+  th, td { text-align: left; padding: 11px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { background: var(--pale-blue); color: var(--green-deep); font-weight: 700; white-space: nowrap; }
+  tr:last-child td { border-bottom: none; }
+  td .fill { font-size: .88em; }
+
+  /* FAQ */
+  details.faq {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
+    margin-bottom: 10px; overflow: hidden; box-shadow: var(--shadow);
+  }
+  details.faq summary {
+    cursor: pointer; list-style: none; padding: 16px 48px 16px 20px; position: relative;
+    font-weight: 600; color: var(--ink);
+  }
+  details.faq summary::-webkit-details-marker { display: none; }
+  details.faq summary::before { content: "Q"; color: var(--green); font-weight: 800; margin-right: 10px; }
+  details.faq summary::after {
+    content: ""; position: absolute; right: 20px; top: 50%; width: 9px; height: 9px;
+    border-right: 2px solid var(--muted); border-bottom: 2px solid var(--muted);
+    transform: translateY(-70%) rotate(45deg); transition: transform .2s;
+  }
+  details.faq[open] summary::after { transform: translateY(-30%) rotate(225deg); }
+  details.faq .ans { padding: 14px 20px 18px 20px; color: var(--ink-soft); border-top: 1px solid var(--line); }
+  details.faq .ans p { margin: 0; }
+
+  /* contact */
+  .contact {
+    background: linear-gradient(135deg, var(--green), var(--green-dark));
+    border-radius: 18px; padding: 34px 30px; color: #fff; box-shadow: var(--shadow);
+  }
+  .contact h2 { margin: 0 0 8px; font-size: 1.45rem; color: #fff; }
+  .contact p.sub { margin: 0 0 22px; color: rgba(255,255,255,.9); }
+  .contact-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 14px; }
+  @media (max-width: 560px) { .contact-grid { grid-template-columns: 1fr; } }
+  .cbox {
+    background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.22);
+    border-radius: 12px; padding: 16px 18px;
+  }
+  .cbox .lab { font-size: .8rem; letter-spacing: .06em; text-transform: uppercase; color: rgba(255,255,255,.75); margin-bottom: 6px; }
+  .cbox .val { font-size: 1.12rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .cbox .val .fill { background: rgba(255,255,255,.16); color: #fff; border-color: rgba(255,255,255,.4); }
+  .cbox .sm { font-size: .86rem; color: rgba(255,255,255,.82); margin-top: 4px; }
+  .urgent { margin-top: 18px; background: rgba(249,137,56,.2); border: 1px solid rgba(249,137,56,.5); border-radius: 12px; padding: 14px 18px; font-size: .94rem; }
+  .urgent strong { color: #ffdcb8; }
+
+  footer.site { border-top: 1px solid var(--line); padding: 28px 0 44px; color: var(--muted); font-size: .86rem; }
+  footer.site .wrap { display: flex; flex-wrap: wrap; gap: 6px 18px; justify-content: space-between; }
+
+  a.inline { color: var(--green-dark); }
+  svg { display: block; }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="site-inner">
+    <div class="brand">
+      <span class="dot"></span>
+      <span class="name">TOKIUM Staffing</span>
+    </div>
+    <h1>スタッフサポートページ</h1>
+    <p class="lead">お仕事を続けるうえでよくあるご質問と手続きをまとめました。勤怠・休暇・お給料・お問い合わせについて、こちらからご確認いただけます。</p>
+  </div>
+</header>
+
+<nav class="toc" aria-label="ページ内メニュー">
+  <ul>
+    <li><a href="#kintai">勤怠について</a></li>
+    <li><a href="#kyuka">休暇について</a></li>
+    <li><a href="#kyuyo">給与・福利厚生</a></li>
+    <li><a href="#faq">よくある質問</a></li>
+    <li><a href="#contact">お問い合わせ</a></li>
+  </ul>
+</nav>
+
+<main class="wrap">
+
+  <!-- Quick links -->
+  <div class="quick">
+    <a class="qcard" href="#kintai">
+      <span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+      <span class="t">勤怠について</span>
+      <span class="d">勤怠システムと問い合わせ先、勤務時間の報告、欠勤の連絡</span>
+    </a>
+    <a class="qcard" href="#kyuka">
+      <span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/><path d="M9 15l2 2 4-4"/></svg></span>
+      <span class="t">休暇について</span>
+      <span class="d">有給休暇の付与ルール、申請・取得のしかた</span>
+    </a>
+    <a class="qcard" href="#kyuyo">
+      <span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.6"/><path d="M6 12h.01M18 12h.01"/></svg></span>
+      <span class="t">給与・福利厚生</span>
+      <span class="d">締め日・支給日、給与明細、社会保険、交通費</span>
+    </a>
+    <a class="qcard" href="#contact">
+      <span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v12H8l-4 4z"/><path d="M8 9h8M8 12h5"/></svg></span>
+      <span class="t">お問い合わせ</span>
+      <span class="d">担当者の連絡先・受付時間、緊急時のご連絡</span>
+    </a>
+  </div>
+
+  <!-- 勤怠 -->
+  <section class="block" id="kintai">
+    <div class="sec-head"><span class="num">01</span><h2>勤怠について</h2></div>
+
+    <div class="card">
+      <h3>勤務時間の報告（勤怠報告）</h3>
+      <p>使用する勤怠システムは就業先によって異なります。ご自身の勤怠システムをご確認のうえ、毎日の始業・終業・休憩時間を実際の勤務にもとづいて正確にご入力ください。</p>
+      <ul>
+        <li><strong>報告方法：</strong>就業先ごとに指定された勤怠システムに入力（システムの種類・問い合わせ先は下記の一覧をご確認ください）</li>
+        <li><strong>入力の頻度：</strong>原則として毎日、その日の勤務分を入力</li>
+        <li><strong>提出期限：</strong>毎月末日までに当月分を確定・提出</li>
+        <li><strong>承認：</strong>派遣先のご担当者様の確認を受けたうえで確定します</li>
+      </ul>
+      <div class="note"><strong>ポイント：</strong>勤務時間はお給料の計算に直結します。入力の漏れや誤りに気づいたら、確定前に早めに担当者までご連絡ください。</div>
+    </div>
+
+    <div class="card">
+      <h3>勤怠管理システムと問い合わせ先</h3>
+      <p>当社では以下の勤怠管理システムを利用しています。どのシステムを使うかは派遣先企業によって異なります。ご自身の就業先で指定されたシステムをご確認ください。</p>
+      <div class="note" style="margin:0 0 16px;"><strong>★</strong>のシステムは、操作方法が分からないときの問い合わせ先が当社とは異なります（システム提供会社の窓口へお問い合わせください）。</div>
+      <div class="sys">
+        <div class="sys-item">
+          <div class="sys-name"><span class="sys-star">★</span>WebTimeCard（ウェブタイムカード）</div>
+          <div class="sys-role">操作の問い合わせ先：株式会社イー・スタッフィング</div>
+          <ul class="contacts">
+            <li><span class="k">電話</span>0120-288-187</li>
+            <li><span class="k">メール</span><a href="mailto:support@e-staffing.co.jp">support@e-staffing.co.jp</a></li>
+            <li><span class="k">問い合わせフォーム</span><a href="https://help.e-staffing.co.jp/contact-WTC" target="_blank" rel="noopener">help.e-staffing.co.jp/contact-WTC</a></li>
+            <li><span class="k">よくある質問</span><a href="https://help.e-staffing.co.jp/" target="_blank" rel="noopener">help.e-staffing.co.jp</a></li>
+          </ul>
+        </div>
+        <div class="sys-item">
+          <div class="sys-name"><span class="sys-star">★</span>e-TimeCard（イータイムカード）</div>
+          <div class="sys-role">操作の問い合わせ先：株式会社イー・スタッフィング</div>
+          <ul class="contacts">
+            <li><span class="k">電話</span>0285-37-8550</li>
+            <li><span class="k">メール</span><a href="mailto:support@e-timecard.ne.jp">support@e-timecard.ne.jp</a></li>
+            <li><span class="k">問い合わせフォーム</span><a href="https://help.e-staffing.co.jp/contact-eTC" target="_blank" rel="noopener">help.e-staffing.co.jp/contact-eTC</a></li>
+          </ul>
+        </div>
+        <div class="sys-item">
+          <div class="sys-name">Digisheet（デジシート）</div>
+          <div class="sys-role">操作の問い合わせ先：TOKIUMスタッフィング（当社）</div>
+          <ul class="contacts">
+            <li><span class="k">電話</span>050-5783-0843（平日 9:00〜18:00）</li>
+            <li><span class="k">メール</span><a href="mailto:staffing_corporate@tokium.jp">staffing_corporate@tokium.jp</a></li>
+            <li><span class="k">マニュアル</span>PC版・スマートフォン版あり <a class="fill" data-link="digisheet_manual_url" data-link-label="マニュアルを開く" href="#" target="_blank" rel="noopener">準備中</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>遅刻・早退・欠勤の連絡</h3>
+      <p>やむを得ず遅刻・早退・お休みをされる場合は、始業前までにご連絡ください。まず派遣先へ、そのうえで弊社（TOKIUMスタッフィング）へご連絡いただきます。</p>
+      <ol class="steps">
+        <li><strong>はじめに派遣先のご担当者様へ連絡</strong><span>電話など、就業先で決められた方法で。メールのみは避け、確実に伝わる手段でお願いします。</span></li>
+        <li><strong>弊社（TOKIUMスタッフィング）へ連絡</strong><span>専用の連絡フォームからご連絡ください。<a class="fill" data-link="attendance_form_url" data-link-label="連絡フォームを開く" href="#" target="_blank" rel="noopener">連絡フォーム（準備中）</a></span></li>
+        <li><strong>勤怠報告に反映</strong><span>当日分の勤務時間を実態に合わせて修正・入力します。</span></li>
+      </ol>
+      <div class="note">連絡先やフォームが分からない場合は <a class="inline" href="#contact">お問い合わせ</a> の窓口までご連絡ください。</div>
+    </div>
+  </section>
+
+  <!-- 休暇 -->
+  <section class="block" id="kyuka">
+    <div class="sec-head"><span class="num">02</span><h2>休暇について</h2></div>
+
+    <div class="note" style="margin:0 0 16px;">有給休暇の制度は改定される場合があります。最新かつ詳細な内容は就業規則をご確認ください。（就業規則：<a class="fill" data-link="work_rules_url" data-link-label="就業規則を開く" href="#" target="_blank" rel="noopener">準備中</a>）</div>
+
+    <div class="card">
+      <h3>年次有給休暇の付与</h3>
+      <p>有給休暇は労働基準法および就業規則にもとづき、一定の条件を満たした方に付与されます。派遣スタッフの有休は、派遣元であるTOKIUMスタッフィングから付与されます。</p>
+      <ul>
+        <li><strong>初回付与：</strong>就業開始から6か月間継続して勤務し、所定就業日数の8割以上勤務した場合に10日を付与</li>
+        <li><strong>使用できる時期：</strong>6か月の就業を終えた時点で付与され、7か月目からご使用いただけます</li>
+        <li><strong>2年目以降：</strong>1年6か月以上継続して勤務した場合、前年の出勤率が8割以上であれば、勤続年数に応じて追加で付与されます</li>
+        <li><strong>繰り越し：</strong>付与日から1年以内に取得しなかった有休は、付与日から2年以内にかぎり繰り越して取得できます</li>
+      </ul>
+      <div class="note"><strong>例：</strong>4月1日から就業を開始した場合、6か月後の10月1日に有給休暇が付与され、同日以降にご使用いただけます。ご自身の付与日・残日数は担当者までお問い合わせください。</div>
+    </div>
+
+    <div class="card">
+      <h3>有給休暇の申請・取得</h3>
+      <ul>
+        <li><strong>申請の期限：</strong>取得を希望する日の前日までに届け出てください。本人の急病など真にやむを得ない事情がある場合を除き、当日の申し出は認められません</li>
+        <li><strong>取得の単位：</strong>1日単位のほか、半日単位でも取得できます</li>
+        <li><strong>申請方法：</strong><span class="fill" data-key="leave_apply_method">確認中</span></li>
+      </ul>
+      <div class="note">業務状況により、取得日の調整をお願いする場合があります。</div>
+    </div>
+
+  </section>
+
+  <!-- 給与・福利厚生 -->
+  <section class="block" id="kyuyo">
+    <div class="sec-head"><span class="num">03</span><h2>給与・福利厚生について</h2></div>
+
+    <div class="card">
+      <h3>締め日・支給日</h3>
+      <div class="tbl-wrap">
+        <table>
+          <tbody>
+            <tr><th>締め日</th><td data-key="closing_date">毎月末日締め</td></tr>
+            <tr><th>支給日</th><td data-key="pay_date">翌月25日（金融機関の休業日にあたる場合は前営業日）</td></tr>
+            <tr><th>支払方法</th><td>ご指定の口座へお振込み</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>給与明細の確認方法</h3>
+      <ul>
+        <li><strong>確認方法：</strong>管理部より、給与明細をメールでお送りします</li>
+        <li>支給額・控除内容（社会保険料・税金など）・勤務時間が記載されています。</li>
+        <li>記載内容にご不明点・相違がある場合は、お早めに担当者までご連絡ください。</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>交通費</h3>
+      <ul>
+        <li><strong>支給：</strong>あり</li>
+        <li>支給の条件・上限額は就業条件により異なります。契約内容をご確認ください。</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>社会保険・雇用保険</h3>
+      <p>加入要件を満たす場合、法令にもとづき各種保険に加入します。保険料は給与から控除されます。</p>
+      <ul>
+        <li><strong>健康保険・厚生年金保険：</strong>労働時間・日数などの加入要件を満たす場合に加入</li>
+        <li><strong>雇用保険：</strong>週の所定労働時間や雇用見込みなどの要件を満たす場合に加入</li>
+        <li><strong>労災保険：</strong>就業されるすべての方に適用されます</li>
+      </ul>
+      <div class="note">ご自身が加入対象かどうか分からない場合は、担当者までお問い合わせください。</div>
+    </div>
+
+    <div class="card">
+      <h3>年末調整・その他</h3>
+      <ul>
+        <li><strong>年末調整：</strong>対象となる方には、時期になりましたら書類提出のご案内をします。</li>
+        <li><strong>健康診断：</strong>対象となる方には、時期になりましたらご案内をします。</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="block" id="faq">
+    <div class="sec-head"><span class="num">04</span><h2>よくあるご質問</h2></div>
+
+    <details class="faq">
+      <summary>体調不良で当日お休みしたいときは、どうすればいいですか？</summary>
+      <div class="ans"><p>始業前までに、まず派遣先のご担当者様へご連絡ください（電話など確実に伝わる方法で）。そのうえで、弊社（TOKIUMスタッフィング）へは所定の連絡フォームからご連絡ください。当日分は勤怠報告で修正します。</p></div>
+    </details>
+    <details class="faq">
+      <summary>有給休暇はいつから使えますか？残りの日数はどこで分かりますか？</summary>
+      <div class="ans"><p>就業開始から6か月間継続して勤務し、8割以上出勤された時点で初回10日が付与され、7か月目からご使用いただけます（例：4月1日就業開始なら10月1日に付与）。残日数は担当者へのお問い合わせでご確認いただけます。</p></div>
+    </details>
+    <details class="faq">
+      <summary>休日も就業報告を行う必要がありますか？</summary>
+      <div class="ans"><p>はい。休日明けの対応で問題ございませんので、休日も就業報告を行ってください。</p></div>
+    </details>
+    <details class="faq">
+      <summary>在宅勤務のときの登録方法を教えてください。</summary>
+      <div class="ans"><p>ご利用の勤怠システムによって登録方法が異なります。<br>・Digisheet（デジシート）：届出選択より「在宅」を選択してください。<br>・WebTimeCard（ウェブタイムカード）：コメント欄に「在宅勤務」とご登録ください。</p></div>
+    </details>
+    <details class="faq">
+      <summary>お給料の振込日はいつですか？</summary>
+      <div class="ans"><p>毎月末日締め、翌月25日のお振込みです（金融機関の休業日にあたる場合は前営業日）。</p></div>
+    </details>
+    <details class="faq">
+      <summary>給与明細の内容が契約と違う気がします。どうすればいいですか？</summary>
+      <div class="ans"><p>まずは勤怠報告の勤務時間と明細の内容をご確認ください。相違がある場合は、支給日からお早めに担当者までご連絡ください。内容を確認のうえ対応します。</p></div>
+    </details>
+    <details class="faq">
+      <summary>就業先を変えたい・契約を更新したくないときは？</summary>
+      <div class="ans"><p>今後のご希望がある場合は、契約更新の時期より前に担当者へご相談ください。契約期間や次のお仕事について、状況にあわせてご案内します。</p></div>
+    </details>
+    <details class="faq">
+      <summary>住所や振込口座、氏名などが変わりました。</summary>
+      <div class="ans"><p>変更が生じた場合は、速やかに担当者までご連絡ください。手続きに必要な書類などをご案内します。</p></div>
+    </details>
+  </section>
+
+  <!-- Contact -->
+  <section class="block" id="contact">
+    <div class="contact">
+      <h2>お問い合わせ</h2>
+      <p class="sub">お仕事やお手続きでご不明な点は、お気軽にご連絡ください。担当者が対応いたします。</p>
+      <div class="contact-grid">
+        <div class="cbox">
+          <div class="lab">電話</div>
+          <div class="val" data-key="tel">050-5783-0843</div>
+          <div class="sm">受付時間：<span data-key="tel_hours">平日 9:00〜18:00</span></div>
+        </div>
+        <div class="cbox">
+          <div class="lab">メール</div>
+          <div class="val" style="font-size:.98rem; word-break:break-all;" data-key="email">staffing_corporate@tokium.jp</div>
+          <div class="sm">返信までお時間をいただく場合があります。</div>
+        </div>
+      </div>
+      <div class="urgent"><strong>当日の欠勤・遅刻など急ぎのご連絡</strong>は、始業前までに、まず派遣先へご連絡のうえ、弊社所定の連絡フォームからご連絡ください。</div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <span>株式会社TOKIUMスタッフィング スタッフサポートページ</span>
+    <span>このページの内容は予告なく変更される場合があります。</span>
+  </div>
+</footer>
+
+<script>
+/*
+  内容の管理について（担当者向け）
+  ・CONTENT_URL に、GitHubに置いた content.json の「raw」URLを貼り付けると、
+    ページの各項目がそのファイルの内容で上書きされます。
+  ・URLが空、または取得に失敗した場合は、HTMLの初期表示のまま表示されます。
+  ・content.json は { "キー": "値" } 形式（JSON）。使用しているキー：
+      closing_date / pay_date / tel / tel_hours / email /
+      leave_apply_method / attendance_form_url / digisheet_manual_url / work_rules_url
+  ・更新：GitHubで content.json を編集してコミット → 数分以内にページへ反映（再読み込み）。
+*/
+(function () {
+  var CONTENT_URL = "content.json"; // 同じサイト内の content.json を読み込む（相対パス）
+
+  if (!CONTENT_URL) return;
+
+  fetch(CONTENT_URL, { cache: "no-store" })
+    .then(function (r) { return r.json(); })
+    .then(function (map) { apply(map || {}); })
+    .catch(function () { /* 取得失敗時は初期表示のまま */ });
+
+  function apply(map) {
+    document.querySelectorAll("[data-key]").forEach(function (el) {
+      var v = map[el.getAttribute("data-key")];
+      if (v != null && v !== "") { el.textContent = v; el.classList.remove("fill"); }
+    });
+    document.querySelectorAll("[data-link]").forEach(function (el) {
+      var v = map[el.getAttribute("data-link")];
+      if (v != null && v !== "") {
+        el.setAttribute("href", v);
+        el.classList.remove("fill");
+        var label = el.getAttribute("data-link-label");
+        if (label) el.textContent = label;
+      }
+    });
+  }
+})();
+</script>
+
+</body>
+</html>
