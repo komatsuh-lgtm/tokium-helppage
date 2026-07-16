@@ -6,6 +6,7 @@
   "email": "staffing_corporate@tokium.jp",
   "leave_apply_method": "確認中",
   "attendance_form_url": "",
-  "digisheet_manual_url": "",
+  "digisheet_manual_pc_url": "docs/digisheet_manual_pc.pdf",
+  "digisheet_manual_sp_url": "docs/digisheet_manual_smartphone.pdf",
   "work_rules_url": ""
 }
